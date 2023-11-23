@@ -1,1 +1,83 @@
 @import "../../css-config/mixins.scss";
+
+.footer {
+    width: 100%;
+
+    .footer-content {
+        padding: 50px 20px;
+        margin: 0 auto;
+        max-width: 1200px;
+        display: flex;
+        flex-flow: wrap;
+        gap: 20px;
+
+        @include md {
+            padding: 50px 0;
+            justify-content: space-between;
+        }
+
+        .col {
+            max-width: 300px;
+
+            .title {
+                font-size: 20px;
+                font-weight: 300;
+                margin-bottom: 20px;
+            }
+
+            .text {
+                color: rgba(0, 0, 0, 0.5);
+                font-size: 14px;
+            }
+
+            .c-content {
+                display: flex;
+                margin-bottom: 10px;
+
+                svg {
+                    flex-shrink: 0;
+                    font-size: 14px;
+                    margin-right: 10px;
+                    margin-top: 4px;
+                    color: rgba(0, 0, 0, 0.5);
+                }
+            }
+
+            span {
+                &.text {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                    justify-content: flex-start;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .bottom-bar {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            width: 100%;
+            .bottom-bar-content {
+                display: flex;
+                padding: 20px;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+                @include md{
+                    padding: 0;
+                    max-width: 1200px;
+                    flex-direction: row;
+                    margin: 0 auto;
+                    height: 60px;
+                    justify-content: space-between;
+                    text-align: left;
+                }
+                .text{
+                    font-size: 13px;
+                    color: rgba(0,0,0,0.5);
+                }
+            }
+        }
+    }
+}

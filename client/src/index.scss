@@ -1,10 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Mukta&family=Noto+Sans+Sogdian&family=Playpen+Sans&family=Roboto+Slab&family=Tilt+Neon&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Cabin", sans-serif;
+    // font-family: "Cabin", sans-serif;
+    font-family: 'Roboto Slab', serif;
 }
+
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
