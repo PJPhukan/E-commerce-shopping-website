@@ -32,14 +32,14 @@
             margin-bottom: 20px;
 
             @include md {
-                width: 480px;
+                width: 450px;
                 margin-bottom: 0;
                 margin-right: 60px;
                 // margin-top: 50px;
             }
 
             @include xxl {
-                width: 600px;
+                width: 500px;
                 margin-top: 0;
             }
         }
