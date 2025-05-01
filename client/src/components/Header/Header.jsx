@@ -34,6 +34,7 @@ const Header = () => {
     useEffect(() => {
         window.addEventListener("scroll", handleScroll)
     }, [])
+    // eslint-disable-next-line
 
     //functions for show cart
     const showCartFunction = () => {

@@ -14,6 +14,7 @@ const Home = () => {
     GetCategories();
     GetProducts();
   }, []);
+  // eslint-disable-next-line
 
   const GetCategories = () => {
     fetchData("/api/categories?populate=*")
