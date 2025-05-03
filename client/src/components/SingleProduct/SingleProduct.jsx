@@ -1,58 +1,80 @@
-import RelatedProducts from './RelatedProducts/RelatedProducts'
+import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import {
-    FaFacebookF,
-    FaTwitter,
-    FaInstagram,
-    FaLinkedin,
-    FaPinterest,
-    FaCartPlus
-} from 'react-icons/fa'
-
-import productImg from '../../assets/products/headphone-prod-1.webp'
-
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaPinterest,
+  FaCartPlus,
+} from "react-icons/fa";
+import useFetch from "../../hooks/useFetch";
+import { useParams } from "react-router-dom";
 import "./SingleProduct.scss";
+import { useState } from "react";
+
 const SingleProduct = () => {
-    return <div className='single-product-main-content'>
-        <div className="layout">
-            <div className="single-product-page">
-                <div className="left">
-                    <img src={productImg} alt="" />
-                </div>
-                <div className="right">
-                    <span className="title">Procuct name</span>
-                    <span className="price">Price</span>
-                    <span className="description">Product description</span>
-                    <div className="cart-buttons">
-                        <div className="quantity-buttons">
-                            <span>-</span>
-                            <span>4</span>
-                            <span>+</span>
-                        </div>
-                        <button className='add-to-cart-button'>
-                            <FaCartPlus size={20} />
-                            ADD TO CART
-                        </button>
-                    </div>
-                    <span className="divider" />
-                    <div className="info-item">
-                        <span className="text-bold">Category:
-                            <span>Headphones</span>
-                        </span>
-                        <span className="text-bold">Share:
-                            <span className="social-icons">
-                                <FaFacebookF size={16} />
-                                <FaTwitter size={16} />
-                                <FaInstagram size={16} />
-                                <FaLinkedin size={16} />
-                                <FaPinterest size={16} />
-                            </span>
-                        </span>
-                    </div>
-                </div>
+  const [quantity, setQuantity] = useState(1);
+  const { id } = useParams();
+  const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
+
+  const increment = () => {
+    setQuantity(quantity + 1);
+  };
+  const decrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+  return (
+    <div className="single-product-main-content">
+      <div className="layout">
+        <div className="single-product-page">
+          <div className="left">
+            <img
+              src={process.env.REACT_APP_DEV_URL + data?.data[0].img[0].url}
+              alt=""
+            />
+          </div>
+          <div className="right">
+            <span className="title">{data?.data[0]?.title}</span>
+            <span className="price">&#8377; {data?.data[0]?.price}</span>
+            <span className="description">{data?.data[0]?.desc}</span>
+            <div className="cart-buttons">
+              <div className="quantity-buttons">
+                <span onClick={decrement}>-</span>
+                <span>{quantity}</span>
+                <span onClick={increment}>+</span>
+              </div>
+              <button className="add-to-cart-button">
+                <FaCartPlus size={20} />
+                ADD TO CART
+              </button>
             </div>
-            <RelatedProducts/>
+            <span className="divider" />
+            <div className="info-item">
+              <span className="text-bold">
+                Category:
+                {data?.data[0]?.categories?.map((category) => (
+                  <span> {category.title} </span>
+                ))}
+              </span>
+              <span className="text-bold">
+                Share:
+                <span className="social-icons">
+                  <FaFacebookF size={16} />
+                  <FaTwitter size={16} />
+                  <FaInstagram size={16} />
+                  <FaLinkedin size={16} />
+                  <FaPinterest size={16} />
+                </span>
+              </span>
+            </div>
+          </div>
         </div>
-    </div>;
+        <RelatedProducts />
+      </div>
+    </div>
+  );
 };
 
 export default SingleProduct;
