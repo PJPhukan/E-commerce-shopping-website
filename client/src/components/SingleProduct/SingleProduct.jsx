@@ -55,7 +55,7 @@ const SingleProduct = () => {
               <span className="text-bold">
                 Category:
                 {data?.data[0]?.categories?.map((category) => (
-                  <span> {category.title} </span>
+                  <span key={category.id}> {category.title} </span>
                 ))}
               </span>
               <span className="text-bold">
@@ -71,7 +71,10 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <RelatedProducts />
+        <RelatedProducts
+          productId={id}
+          categoryId={data?.data[0]?.categories[0].id}
+        />
       </div>
     </div>
   );
