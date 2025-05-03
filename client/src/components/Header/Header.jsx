@@ -7,15 +7,15 @@ import { AiOutlineHeart } from "react-icons/ai";
 
 import Search from "./Search/Search";
 import Cart from "../Cart/Cart";
-import Context from "../../utails/context";
+import { Context } from "../../utails/context";
 import "./Header.scss";
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
+  const { cartCount } = useContext(Context);
 
-  //handle navber scroll function
   const handleScroll = () => {
     const offset = window.scrollY;
     if (offset > 150) {
@@ -29,11 +29,9 @@ const Header = () => {
   }, []);
   // eslint-disable-next-line
 
-  //functions for show cart
   const showCartFunction = () => {
     setShowCart(true);
   };
-  //functions for show search
   const showSearchFunction = () => {
     setShowSearch(true);
   };
@@ -55,7 +53,7 @@ const Header = () => {
             <AiOutlineHeart />
             <span className="card-icon" onClick={showCartFunction}>
               <CgShoppingCart />
-              <span>5</span>
+              {!!cartCount && <span>{cartCount}</span>}
             </span>
           </div>
         </div>
